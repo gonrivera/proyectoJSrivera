@@ -51,6 +51,15 @@ class CotizarPlan{
             console.log("No ingresa hijos")
         }
 
+        // Filtrar por hijos mayores de 26 años
+        const hijosMayoresA26= this.edadesHijos.filter(edadHijo => edadHijo>25);
+        if(hijosMayoresA26.length===1){
+            console.log("Ingresa "+hijosMayoresA26.length+" hijo mayor de 26 años, por lo tengo ingresa como adherente");
+        } else if(hijosMayoresA26.length>1){
+            console.log("Ingresa "+hijosMayoresA26.length+" hijos mayores de 26 años, por lo tengo ingresan como adherentes");
+        }else{
+            console.log("No ingresa hijos mayores de 26 años ");
+        }
 
     return this.precioPlan;
     }
@@ -79,7 +88,6 @@ if(ingresaHijos){
         edadesHijos.push(edadHijo);
     }
 }
-
 
 let plan= new CotizarPlan(nombreTitular,edadTitular,ingresaConyuge,edadConyuge,ingresaHijos,cantidadHijos,edadesHijos);
 
