@@ -3,9 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cotizador plan de salud</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
+    <form class="datos">
+        <h2>Cotice su plan de salud</h2>
+        <div >
+            Me llamo  
+            <input type="text" id="nombre" class="input" required style="max-width:170px" >  
+            mi edad es  
+            <input type="number" id="edad" class="input" required style="max-width:32px" min="18" max="99">
+            
+        </div>
+        <div class="conyuge">
+            "Ingresa conyuge?"
+            <select name="ingresaConyuge" id="ingresaConyuge">
+                <option value="SI">SI</option>
+                <option value="NO"selected>NO</option>
+            </select>
+        </div>
+        
+        <div>
+            "Ingresa hijos?"
+            <select name="ingresaHijos" id="ingresaHijos">
+                <option value="SI">SI</option>
+                <option value="NO" selected>NO</option>
+            </select>
+        </div>
+        
+
+        <div class="btncont">
+            <input type="submit" value="Enviar" class="btn-contacto">
+            <input type="reset" value="Limpiar" class="btn-contacto">
+        </div>
+        
+    </form>
+
+
+
+
+
+
     <script src="index.js"></script>
 </body>
 </html>

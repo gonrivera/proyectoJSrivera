@@ -1,0 +1,19 @@
+* {
+    margin: 5px;
+    padding: 5px;
+    font-family: "Prompt", sans-serif;
+}
+
+body {
+    background-color: #fcf5eb;
+}
+
+h2{
+    text-align: center;
+}
+
+.datos{
+    margin-top: 10px;
+    margin-left: 30px;
+    text-align: left;
+}

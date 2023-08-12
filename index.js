@@ -65,32 +65,32 @@ class CotizarPlan{
     }
 }
 
-let nombreTitular= prompt("Ingrese nombre titular");
+let nombreTitular= document.getElementById("nombre");
 
-let edadTitular= prompt("Ingrese edad titular");
+let edadTitular= document.getElementById("edad");
 
-let ingresaConyuge=confirm("Ingresa conyuge al plan");
+let ingresaConyuge= document.getElementById("ingresaConyuge");
 
 let edadConyuge= null;
 
-if(ingresaConyuge){
-    edadConyuge=prompt("Ingrese edad conyuge");
+if(ingresaConyuge===SI){
+    edadConyuge.appenChild(edad de conyuge <input type="number" id="edad" class="input" required style="max-width:32px" min="18" max="99">);
 }
 
-let ingresaHijos= confirm("Ingresa hijos a su plan");
-let cantidadHijos=null;
-let edadesHijos= [];
+// let ingresaHijos= confirm("Ingresa hijos a su plan");
+// let cantidadHijos=null;
+// let edadesHijos= [];
 
-if(ingresaHijos){
-    cantidadHijos= prompt("Cantidad de hijos a ingresar")
-    for (let i=0;i<cantidadHijos;i++){
-        let edadHijo=prompt("Ingrese edad del hijo"+(i+1));
-        edadesHijos.push(edadHijo);
-    }
-}
+// if(ingresaHijos){
+//     cantidadHijos= prompt("Cantidad de hijos a ingresar")
+//     for (let i=0;i<cantidadHijos;i++){
+//         let edadHijo=prompt("Ingrese edad del hijo"+(i+1));
+//         edadesHijos.push(edadHijo);
+//     }
+// }
 
-let plan= new CotizarPlan(nombreTitular,edadTitular,ingresaConyuge,edadConyuge,ingresaHijos,cantidadHijos,edadesHijos);
+// let plan= new CotizarPlan(nombreTitular,edadTitular,ingresaConyuge,edadConyuge,ingresaHijos,cantidadHijos,edadesHijos);
 
-let precio=plan.cotizar();
+// let precio=plan.cotizar();
 
-alert("Estimado "+plan.nombreTitular+" el precio de su plan es: $" + precio);
+// alert("Estimado "+plan.nombreTitular+" el precio de su plan es: $" + precio);
