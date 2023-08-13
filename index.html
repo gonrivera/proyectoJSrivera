@@ -1,50 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotizador plan de salud</title>
+    <title>Cotizador de plan de salud</title>
     <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <form class="datos">
-        <h2>Cotice su plan de salud</h2>
-        <div >
-            Me llamo  
-            <input type="text" id="nombre" class="input" required style="max-width:170px" >  
-            mi edad es  
-            <input type="number" id="edad" class="input" required style="max-width:32px" min="18" max="99">
-            
-        </div>
-        <div class="conyuge">
-            "Ingresa conyuge?"
-            <select name="ingresaConyuge" id="ingresaConyuge">
-                <option value="SI">SI</option>
-                <option value="NO"selected>NO</option>
-            </select>
-        </div>
-        
-        <div>
-            "Ingresa hijos?"
-            <select name="ingresaHijos" id="ingresaHijos">
-                <option value="SI">SI</option>
-                <option value="NO" selected>NO</option>
-            </select>
-        </div>
-        
+<h1>Cotiza tu plan online</h1>
+<p>Elegí tu grupo familiar y cotizá la mejor cobertura médica prepaga</p>
 
-        <div class="btncont">
-            <input type="submit" value="Enviar" class="btn-contacto">
-            <input type="reset" value="Limpiar" class="btn-contacto">
+<div class="container">
+    <div class="box">
+        Para Mi
+    </div>
+    <div class="box">
+        Para Mi y Mi Pareja
+    </div>
+    <div class="box">
+        Para Mi Familia
+    </div>
+
+</div>
+
+<div class="container" style="margin-top:40px">
+    <form id="miFormulario">
+        <div class="form-group" id="divNombreTitular"  style="display:none">
+            <label for="nombreTitular" >Nombre Titular</label>
+            <input type="text" id="nombreTitular" name="nombreTitular" >
         </div>
-        
+
+        <div class="form-group"  id="divEdadTitular"  style="display:none">
+            <label for="edadTitular">Edad Titular</label>
+            <input type="number" id="edadTitular" name="edadTitular" >
+        </div>
+
+
+        <div class="form-group"  id="divConyugeEdad"  style="display:none">
+            <label for="edadConyuge">Edad Cónyuge</label>
+            <input type="number" id="edadConyuge" name="edadConyuge" >
+        </div>
+
+
+        <div class="form-group" style="display:none" id="divCantidadHijos">
+            <label for="cantidadHijos">Cantidad de Hijos</label>
+            <select id="cantidadHijos" name="cantidadHijos" >
+                <option value="0" selected disabled>0</option>
+                <option value="1" >1</option>
+                <option value="2" >2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+
+
+
+        <div class="form-group" style="display:none" id="divHijo1">
+            <label for="edadHijos">Edad Hijo 1 </label>
+            <input type="text" id="edadHijo1" name="edadHijo1" >
+
+        </div>
+
+        <div class="form-group" style="display:none" id="divHijo2">
+            <label for="edadHijos">Edad Hijo 2 </label>
+            <input type="text" id="edadHijo2" name="edadHijo1" >
+
+        </div>
+        <div class="form-group" style="display:none" id="divHijo3">
+            <label for="edadHijos">Edad Hijo 3 </label>
+            <input type="text" id="edadHijo3" name="edadHijo1" >
+        </div>
+
+        <button type="submit" id="bntEnviar" style="display:none">Enviar</button>
     </form>
 
 
+    <h3>Precio del Plan: $<div id="precio"></div></h3>
 
+</div>
 
+<script src="index.js"></script>
 
-
-    <script src="index.js"></script>
 </body>
 </html>

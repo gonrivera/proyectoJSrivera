@@ -1,96 +1,149 @@
-class CotizarPlan{
-    constructor(nombreTitular,edadTitular,ingresaConyuge,edadConyuge,ingresaHijos,cantidadHijos,edadesHijos){
-        this.nombreTitular=nombreTitular;
-        this.edadTitular=edadTitular;
-        this.ingresaConyuge=ingresaConyuge;
-        this.edadConyuge=edadConyuge;
-        this.ingresaHijos=ingresaHijos;
-        this.cantidadHijos=cantidadHijos;
-        this.edadesHijos=edadesHijos;
-        this.precioPlan=0;
+class CotizarPlan {
+    constructor(nombreTitular, edadTitular, edadConyuge, cantidadHijos, edadesHijos) {
+        this.nombreTitular = nombreTitular;
+        this.edadTitular = edadTitular;
+        this.edadConyuge = edadConyuge;
+        this.cantidadHijos = cantidadHijos;
+        this.edadesHijos = edadesHijos;
+        this.precioPlan = 0;
+
     }
 
-    cotizar(){
+    cotizar() {
         //Cotización titular
-        if(this.edadTitular>=18 && this.edadTitular<60){
-            this.precioPlan+=10000;
-            console.log("El precio titular solo es: $"+this.precioPlan);
-        }else if(this.edadTitular>=60){
-            this.precioPlan+=20000;
-            console.log("El precio titular solo es: $"+this.precioPlan);
-        }else{
-            alert("Usted es menor de edad no puede ser titular de un plan");
+        if (this.edadTitular >= 18 && this.edadTitular < 60) {
+            this.precioPlan += 10000;
+            console.log("El precio titular solo es: $" + this.precioPlan);
+        } else if (this.edadTitular >= 60) {
+            this.precioPlan += 20000;
+            console.log("El precio titular solo es: $" + this.precioPlan);
+        } else {
+            Swal.fire('Usted es menor de edad no puede ser titular de un plan');
+
+            //alert("Usted es menor de edad no puede ser titular de un plan");
         }
 
         //Cotización conyuge
-        if(ingresaConyuge){
-            if(this.edadConyuge>=18 && this.edadConyuge<60){
-                this.precioPlan+=10000;
-                console.log("El precio matrimonio es: $"+this.precioPlan);
-            }else if(this.edadConyuge>=60){
-                this.precioPlan+=20000;
-                console.log("El precio matrimonio es: $"+this.precioPlan);
-            }else{
-                alert("Su conyuge es menor de edad no puede igresar al plan");
+        if (this.edadConyuge != null) {
+            if (this.edadConyuge >= 18 && this.edadConyuge < 60) {
+                this.precioPlan += 10000;
+                console.log("El precio matrimonio es: $" + this.precioPlan);
+            } else if (this.edadConyuge >= 60) {
+                this.precioPlan += 20000;
+                console.log("El precio matrimonio es: $" + this.precioPlan);
+            } else {
+                Swal.fire('Su cónyuge es menor de edad');
             }
-        } else{
+        } else {
             console.log("No ingresa conyuge")
         }
 
 
         // Cotización hijos
-        if(this.ingresaHijos){
-            for (let i=0;i<this.cantidadHijos;i++){
-                if(this.edadesHijos[i]>=26){
-                    this.precioPlan+=5000;
-                }else{
-                    this.precioPlan+=3000;
+        if (this.cantidadHijos > 0) {
+            for (let i = 0; i < this.cantidadHijos; i++) {
+                if (this.edadesHijos[i] >= 26) {
+                    this.precioPlan += 5000;
+                } else {
+                    this.precioPlan += 3000;
                 }
             }
-        } else{
+        } else {
             console.log("No ingresa hijos")
         }
-
-        // Filtrar por hijos mayores de 26 años
-        const hijosMayoresA26= this.edadesHijos.filter(edadHijo => edadHijo>25);
-        if(hijosMayoresA26.length===1){
-            console.log("Ingresa "+hijosMayoresA26.length+" hijo mayor de 26 años, por lo tengo ingresa como adherente");
-        } else if(hijosMayoresA26.length>1){
-            console.log("Ingresa "+hijosMayoresA26.length+" hijos mayores de 26 años, por lo tengo ingresan como adherentes");
-        }else{
-            console.log("No ingresa hijos mayores de 26 años ");
-        }
-
-    return this.precioPlan;
+        return this.precioPlan;
     }
 }
 
-let nombreTitular= document.getElementById("nombre");
+  //Seleccion de plan
+document.querySelectorAll('.box').forEach(box => {
 
-let edadTitular= document.getElementById("edad");
+    box.addEventListener('click', () => {
+        document.querySelector('#divNombreTitular').style.display = 'none';
+        document.querySelector('#divEdadTitular').style.display = 'none';
+        document.querySelector('#divConyugeEdad').style.display = 'none';
+        document.querySelector('#divCantidadHijos').style.display = 'none';
+        document.querySelector('#bntEnviar').style.display = 'none';
 
-let ingresaConyuge= document.getElementById("ingresaConyuge");
 
-let edadConyuge= null;
 
-if(ingresaConyuge===SI){
-    edadConyuge.appenChild(edad de conyuge <input type="number" id="edad" class="input" required style="max-width:32px" min="18" max="99">);
-}
+        switch(box.textContent.trim()){
+                case 'Para Mi':
+                    document.querySelector('#divNombreTitular').style.display = 'block';
+                    document.querySelector('#divEdadTitular').style.display = 'block';
+                    document.querySelector('#bntEnviar').style.display = 'block';
+                    break;
 
-// let ingresaHijos= confirm("Ingresa hijos a su plan");
-// let cantidadHijos=null;
-// let edadesHijos= [];
+            case 'Para Mi y Mi Pareja':
+                document.querySelector('#divNombreTitular').style.display = 'block';
+                document.querySelector('#divEdadTitular').style.display = 'block';
+                document.querySelector('#divConyugeEdad').style.display = 'block';
+                document.querySelector('#bntEnviar').style.display = 'block';
+                break;
 
-// if(ingresaHijos){
-//     cantidadHijos= prompt("Cantidad de hijos a ingresar")
-//     for (let i=0;i<cantidadHijos;i++){
-//         let edadHijo=prompt("Ingrese edad del hijo"+(i+1));
-//         edadesHijos.push(edadHijo);
-//     }
-// }
+            case 'Para Mi Familia':
+                document.querySelector('#divNombreTitular').style.display = 'block';
+                document.querySelector('#divEdadTitular').style.display = 'block';
+                document.querySelector('#divConyugeEdad').style.display = 'block';
+                document.querySelector('#divCantidadHijos').style.display = 'block';
+                document.querySelector('#divHijo1').style.display = 'block';
+                document.querySelector('#bntEnviar').style.display = 'block';
+                break;
+        }
+    });
+});
 
-// let plan= new CotizarPlan(nombreTitular,edadTitular,ingresaConyuge,edadConyuge,ingresaHijos,cantidadHijos,edadesHijos);
+//cantidad de hijos
+document.getElementById('cantidadHijos').addEventListener('change', function() {
 
-// let precio=plan.cotizar();
+    switch (this.value) {
+        case "1":
+            document.querySelector('#divHijo1').style.display = 'block';
+            document.querySelector('#divHijo2').style.display = 'none';
+            document.querySelector('#divHijo3').style.display = 'none';
+            break;
+        case "2":
+            document.querySelector('#divHijo1').style.display = 'block';
+            document.querySelector('#divHijo2').style.display = 'block';
+            document.querySelector('#divHijo3').style.display = 'none';
+            break;
+        case "3":
+            document.querySelector('#divHijo3').style.display = 'block';
+            document.querySelector('#divHijo1').style.display = 'block';
+            document.querySelector('#divHijo2').style.display = 'block';
+            break;
+    }
+});
 
-// alert("Estimado "+plan.nombreTitular+" el precio de su plan es: $" + precio);
+document.getElementById('miFormulario').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    let nombreTitular = document.getElementById('nombreTitular').value;
+    let edadTitular = document.getElementById('edadTitular').value;
+    let edadConyuge = document.getElementById('edadConyuge').value;
+    let cantidadHijos = document.getElementById('cantidadHijos').value;
+    let edadesHijos = [];
+
+
+    switch (cantidadHijos){
+        case "0":
+            break;
+        case "1":
+            edadesHijos.push(document.getElementById('edadHijo1').value);
+            break;
+        case "2":
+            edadesHijos.push(document.getElementById('edadHijo1').value);
+            edadesHijos.push(document.getElementById('edadHijo2').value);
+            break;
+        case "3":
+            edadesHijos.push(document.getElementById('edadHijo1').value);
+            edadesHijos.push(document.getElementById('edadHijo2').value);
+            edadesHijos.push(document.getElementById('edadHijo3').value);
+            break;
+    }
+let plan= new CotizarPlan(nombreTitular,edadTitular,edadConyuge,cantidadHijos,edadesHijos);
+
+let precio = plan.cotizar();
+    document.getElementById('precio').textContent = precio;
+
+});
