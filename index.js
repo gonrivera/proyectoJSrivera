@@ -19,8 +19,6 @@ class CotizarPlan {
             console.log("El precio titular solo es: $" + this.precioPlan);
         } else {
             Swal.fire('Usted es menor de edad no puede ser titular de un plan');
-
-            //alert("Usted es menor de edad no puede ser titular de un plan");
         }
 
         //Cotización conyuge
@@ -147,3 +145,19 @@ let precio = plan.cotizar();
     document.getElementById('precio').textContent = precio;
 
 });
+
+let tempActual = document.querySelector("#tempActual")
+
+const fetchTemperatura = async () => {
+    const resp = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-34.6131&longitude=-58.3772&hourly=temperature_2m&current_weather=true&timezone=GMT&forecast_days=1')
+    const data = await resp.json()
+    console.log(data);
+
+    const tempInfo = document.createElement("div");
+    tempInfo.innerHTML = `
+    <h3> La temperatura actual en Buenos Aires es de:  ${data.current_weather.temperature}°</h3>
+    `;
+    tempActual.append(tempInfo);
+}
+
+fetchTemperatura();
